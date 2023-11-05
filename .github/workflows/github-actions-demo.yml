@@ -26,9 +26,9 @@ jobs:
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
         with: # shimataro/ssh-key-actionに渡すパラメーター
-          private-key: ${{ secrets.SSH_KEY }} # 必須
+          key: ${{ secrets.SSH_KEY }} # 必須
           name: id_rsa # 省略可
-          known-hosts: ${{ secrets.KNOWN_HOSTS }} # 必須
+          known_hosts: ${{ secrets.KNOWN_HOSTS }} # 必須
 
       - name: run deploy script
         run: |
