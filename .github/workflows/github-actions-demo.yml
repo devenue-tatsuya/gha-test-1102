@@ -25,4 +25,4 @@ jobs:
           bash ../deploy.sh
 
       - name: run deploy script
-        run: ls
+        run: ls client/
