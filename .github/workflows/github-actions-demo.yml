@@ -32,5 +32,5 @@ jobs:
 
       - name: run deploy script
         run: |
-          ls client/dist
-          bash ../deploy.sh
+          ls 
+          bash ./deploy.sh
