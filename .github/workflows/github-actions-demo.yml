@@ -17,20 +17,18 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: npm install, build, and test
+      - name: Build
         run: |
           cd client/
           npm install
           npm run build
 
-      - name: Install SSH key
+      - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
-        with: # shimataro/ssh-key-actionに渡すパラメーター
-          key: ${{ secrets.SSH_KEY }} # 必須
-          name: id_rsa # 省略可
-          known_hosts: ${{ secrets.KNOWN_HOSTS }} # 必須
+        with:
+          name: id_rsa
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
-      - name: run deploy script
-        run: |
-          ls 
-          bash ./deploy.sh
+      - name: Deploy
+        run: bash ./deploy.sh
