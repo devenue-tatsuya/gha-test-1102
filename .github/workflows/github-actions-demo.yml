@@ -21,8 +21,7 @@ jobs:
         run: |
           cd client/
           npm install
-          npm run build 
-          bash ../deploy.sh
+          npm run build
 
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v1
@@ -32,4 +31,6 @@ jobs:
           known-hosts: ${{ secrets.KNOWN_HOSTS }} # 必須
 
       - name: run deploy script
-        run: ls client/
+        run: |
+          ls client/dist
+          bash ../deploy.sh
