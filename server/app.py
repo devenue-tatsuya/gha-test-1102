@@ -6,4 +6,4 @@ CORS(app)
 
 @app.route("/api/heroes", methods=['GET'])
 def hoge():
-    return 'hoge'
+    return {"name": "Yamada"}
