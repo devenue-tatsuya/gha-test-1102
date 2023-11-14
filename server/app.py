@@ -1,4 +1,6 @@
 from flask import Flask
+from flask import make_response
+
 from flask_cors import CORS
 import pymysql
 
@@ -21,4 +23,4 @@ def getHeroes():
     cur.execute(sql)
     result = cur.fetchall()
 
-    return result
+    return make_response(result)

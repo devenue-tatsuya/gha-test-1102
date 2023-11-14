@@ -9,7 +9,6 @@ export class HeroService {
   constructor(private http: HttpClient) {}
 
   getHeroes() {
-    console.log('getHeroes');
     return this.http.get<any>(`${this.url}/api/heroes`);
   }
 }
