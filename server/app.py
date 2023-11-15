@@ -1,26 +1,17 @@
 from flask import Flask
 from flask import make_response
-
 from flask_cors import CORS
-import pymysql
+
+from db.core import get_database_config
 
 app = Flask(__name__)
 CORS(app)
 
 @app.route("/api/heroes", methods=['GET'])
-def getHeroes():
-    db = pymysql.connect(
-        host='localhost',
-        user='root',
-        password='',
-        db='hero',
-        charset='utf8',
-        cursorclass=pymysql.cursors.DictCursor,
-    )
-
-    cur = db.cursor()
+def get_heroes():
+    cursor = get_database_config()
     sql = "select * from heroes"
-    cur.execute(sql)
-    result = cur.fetchall()
+    cursor.execute(sql)
+    result = cursor.fetchall()
 
     return make_response(result)
