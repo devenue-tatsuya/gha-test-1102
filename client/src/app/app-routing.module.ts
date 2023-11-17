@@ -2,11 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HeroesComponent } from './heroes/heroes.component';
+import { CreateComponent } from './create/create.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HeroesComponent,
+  },
+  {
+    path: 'create',
+    component: CreateComponent,
   },
 ];
 

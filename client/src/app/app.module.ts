@@ -6,9 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { HeaderComponent } from './header/header.component';
+import { CreateComponent } from './create/create.component';
 
 @NgModule({
-  declarations: [AppComponent, HeroesComponent, HeaderComponent],
+  declarations: [AppComponent, HeroesComponent, HeaderComponent, CreateComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
