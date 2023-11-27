@@ -8,15 +8,6 @@ from db.core import get_database_config
 app = Flask(__name__)
 CORS(app)
 
-connection =  pymysql.connect(
-        host='localhost',
-        user='root',
-        password='password',
-        db='hero',
-        charset='utf8',
-        cursorclass=pymysql.cursors.DictCursor,
-    )
-
 
 @app.route("/api/heroes", methods=['GET'])
 def get_heroes():
@@ -27,22 +18,17 @@ def get_heroes():
 
         return make_response(result)
 
+
 @app.route("/api/heroes", methods=['POST'])
 def create_hero():
-    connection =  pymysql.connect(
-        host='localhost',
-        user='root',
-        password='password',
-        db='hero',
-        charset='utf8',
-        cursorclass=pymysql.cursors.DictCursor,
-    )
+    connection = get_database_config()
+    cursor = connection.cursor()
 
-    with connection:
-        with connection.cursor() as cursor:
-            sql = "INSERT INTO heroes (name) VALUES (%s)"
-            cursor.execute(sql, (request.json['name']['userName']))
-            connection.commit()
+    sql = "INSERT INTO heroes (name) VALUES (%s)"
+    cursor.execute(sql, (request.json['name']['userName']))
+    connection.commit()
+
+    cursor.close()
+    connection.close()
 
     return make_response('hoge')
-
