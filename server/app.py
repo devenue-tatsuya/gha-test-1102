@@ -31,4 +31,4 @@ def create_hero():
     cursor.close()
     connection.close()
 
-    return make_response('hoge')
+    return make_response({})
