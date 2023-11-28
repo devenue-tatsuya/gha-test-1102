@@ -1,7 +1,6 @@
 from flask import Flask
 from flask import make_response, request
 from flask_cors import CORS
-import pymysql
 
 from db.core import get_database_config
 
@@ -11,13 +10,17 @@ CORS(app)
 
 @app.route("/api/heroes", methods=['GET'])
 def get_heroes():
-    with getConnection().cursor() as cursor:
-        sql = "select * from heroes"
-        cursor.execute(sql)
-        result = cursor.fetchall()
+    connection = get_database_config()
+    cursor = connection.cursor()
 
-        return make_response(result)
+    sql = "select * from heroes"
+    cursor.execute(sql)
+    result = cursor.fetchall()
 
+    cursor.close()
+    connection.close()
+
+    return make_response(result)
 
 @app.route("/api/heroes", methods=['POST'])
 def create_hero():
