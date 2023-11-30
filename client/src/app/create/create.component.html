@@ -1,0 +1,10 @@
+<form [formGroup]="userCreateForm" (ngSubmit)="onSubmit()">
+  <label for="new-hero">Hero name: </label>
+  <input type="text" id="new-hero" #heroName formControlName="userName"/>
+  <button
+    type="submit"
+    class="add-button"
+  >
+    Add hero
+  </button>
+</form>
