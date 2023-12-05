@@ -22,6 +22,22 @@ def get_heroes():
 
     return make_response(result)
 
+
+@app.route("/api/heroes/<int:id>", methods=['GET'])
+def get_hero(id):
+    connection = get_database_config()
+    cursor = connection.cursor()
+
+    sql = "select * from heroes where id=" + str(id)
+    cursor.execute(sql)
+    result = cursor.fetchall()
+
+    cursor.close()
+    connection.close()
+
+    return make_response(result)
+
+
 @app.route("/api/heroes", methods=['POST'])
 def create_hero():
     connection = get_database_config()
